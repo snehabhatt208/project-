@@ -1,28 +1,35 @@
 STEP 1 :IMPORT LIBRARY
+
 import pandas as pd
 
 Step 2 : IMPORT DATA
+
 icecream = pd.read_csv('https://github.com/ybifoundation/Dataset/raw/main/Ice%20Cream.csv')
 
 Step 3 : DEFINE TARGET (y) AND FEATURES (X)
+
 icecream.columns
 Index(['Temperature', 'Revenue'], dtype='object')
 y = icecream['Revenue']
 X = icecream[['Temperature']]
 
 Step 4 : TRAIN TEST SPLIT
+
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X,y, train_size=0.7, random_state=2529)
 
 CHECK SHAPE OF TRAIN AND TEST SAMPLE
+
 X_train.shape, X_test.shape, y_train.shape, y_test.shape
 ((350, 1), (150, 1), (350,), (150,))
 
 Step 5 : SELECT MODEL
+
 from sklearn.linear_model import LinearRegression
 model = LinearRegression()
 
 Step 6 : TRAIN OR FIT MODEL
+
 model.fit(X_train,y_train)
 LinearRegression()
 model.intercept_
@@ -31,6 +38,7 @@ model.coef_
 array([21.54587147])
 
 Step 7 :PREDICT MODEL
+
 y_pred = model.predict(X_test)
 y_pred
 array([645.7291738 , 380.7149547 , 180.33835001, 247.13055157,
@@ -73,6 +81,7 @@ array([645.7291738 , 380.7149547 , 180.33835001, 247.13055157,
 410.87917476, 305.30440455])
 
 Step 8 :MODEL ACCURACY
+
 from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error, mean_squared_error
 mean_absolute_error(y_test,y_pred)
 19.138687444270737
